@@ -1,9 +1,29 @@
 
 #include "main.h"
 
-
-
-
+void low (void)
+{D7=1;
+	delay_tick(18);
+	D7=0;
+	delay_tick(35);
+}
+//
+void hiw (void)
+{D7=1;
+	delay_tick(35);
+	D7=0;
+	delay_tick(12);
+}
+//
+void RGB ()//(u8 *leds)
+{	u8 i,j;		
+	for(j=0;j<LEDS;j++) 
+	{
+		for(i=0;i<24;i++) leds[j]&(0x800000>>i)?hiw():low();//G	
+	}
+	
+		
+}
 //
 int32_t main(void)
 {
@@ -18,11 +38,7 @@ int32_t main(void)
     SYS_UnlockReg();
     WDT_Open(WDT_TIMEOUT_2POW14, WDT_RESET_DELAY_18CLK, TRUE, TRUE);
 		SYS_LockReg();
-
-//		SYS->GPA_MFPH = 0x0EEE2200; // OTG USB pin off	
-		//SYS->GPB_MFPH = 0x10220000;
-
-			
+		
 	//GPIO_SLEWCTL_FAST
 
 //		EBI->CTL0=0x00000203;//|(1<<24);
@@ -42,7 +58,7 @@ int32_t main(void)
 //		PA->PUSEL=PUBIT3|PUBIT4; 	//Port A QEI (Encoder) pins PullUp
 //		PC->PUSEL=PUBIT0|PUBIT1|PUBIT2|PUBIT3|PUBIT4|PUBIT5; 	//Port A QEI (Encoder) pins PullUp
 //
-    TIMER_Open(TIMER0,TIMER_PERIODIC_MODE,1000);	//Start timer0
+    TIMER_Open(TIMER0,TIMER_PERIODIC_MODE,3500);	//Start timer0
     TIMER_EnableInt(TIMER0);
     NVIC_EnableIRQ(TMR0_IRQn);
     TIMER_Start(TIMER0);
@@ -51,70 +67,35 @@ int32_t main(void)
 //    TIMER_EnableInt(TIMER1);
 //    NVIC_EnableIRQ(TMR1_IRQn);
 //    TIMER_Start(TIMER1);		
-		
-	
-		
-
-
-//
-
-
-
 		__enable_irq();
-
-		
-		
-//		status=arm_rfft_fast_init_f32(&RFFT,SAMPLE_LENGTH);
-		
-
-
-//
+	
 	}
 	while(1)
 	{
 		WDTclr;
 //
-//		if(press) //press KEY
-//		{
-//			press=0;
-//			
-//			
-//			switch(key)
-//			{ 
-////				case 1:write_eep(ADDRESS_PARAM,sizeof(eeprom_temp1),&eeprom_temp1);break;
-////				case 2:read_eep(ADDRESS_PARAM,sizeof(eeprom_temp2),&eeprom_temp2);break;
-////				case 3:{eeprom_temp1++;zb>=1.0?1.0:(zb+=.1);}break;
-////				case 4:clearDisp();break;
-////				case 5:zb<=0.1?0.1:(zb-=0.1);break;
-//				
-//			}
-
-//			//	if(t>=SAMPLE_LENGTH)
-////	{
-////		t=0;
-////		fadc=1;
-////		for(u16 i=0;i<SAMPLE_LENGTH;i++)fft_in[i]=(float)fft_tmp[i];
-////	}
-//			
-//		}
-//
 		if(!tmr)
 		{
-			tmr=200;				//50ms timer
+			u8 i,j;
+			tmr=100;				//1ms timer
+
+			leds[0]=0x0000FF;
+			leds[1]=0x0000FF; //GRB
+			leds[2]=0xFF00FF;
+			leds[3]=0xFFFFFF;
+			leds[4]=0x010101;
 			
-			D0 = !D0;
-			D1 = !D0;
-			D2 = D0;
-			D3 = !D0;
-			D4 = D0;
-			D5 = !D0;
-			D6 = D0;
-			D7 = !D0;			
-
-			}
-
-	}
-}
+			RGB();//2,0xFFFFFF);
+//		for(j=0;j<8;j++)
+//		{			
+//			for(i=0;i<8;i++) hiw();//G	
+//			for(i=0;i<8;i++) low();//R
+//			for(i=0;i<8;i++) low();//R			
+//		}	
+//			D7=0;
+		}
+	} //end while
+}		//end main
 //
 void TMR0_IRQHandler(void)//1ms
 {
@@ -131,23 +112,11 @@ void TMR0_IRQHandler(void)//1ms
 
 
 //
-void TMR1_IRQHandler(void)
-{
-	TIMER_ClearIntFlag(TIMER1);
-//
-	static u16 t;
-	
+//void TMR1_IRQHandler(void)
+//{
+//	TIMER_ClearIntFlag(TIMER1);
+////
+////	static u16 t;
+//	
 
-//	batt=GetAdcData();
-
-//	t++;
-//	if(t>=SAMPLE_LENGTH)
-//	{
-//		t=0;
-////		fadc=1;
-////		for(u16 i=0;i<SAMPLE_LENGTH;i++)fft_in[i]=(float)fft_tmp[i];
-//	}
-//	EADC->SWTRG|=1;
-}
-//
 

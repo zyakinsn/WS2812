@@ -16,6 +16,7 @@
 
 #define RAB_CLS						8
 #define RAB_OPN						5
+#define LEDS					16
 //
 u8 to_sw;
 u16 RAB_busy;
@@ -31,9 +32,11 @@ u8 rel;
 u8 key;
 u8 eeprom_temp1=0;
 u8 eeprom_temp2=0;
-u8 leds;
 u8 fadc;
 u16 color;
+
+u32 leds[LEDS];
+
 
 //
 float za,zb,zc,zd,ze;
