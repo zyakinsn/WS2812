@@ -1,7 +1,6 @@
 
 #include "main.h"
 
-<<<<<<< Updated upstream
 void low (void)
 {D7=1;
 	delay_tick(18);
@@ -25,10 +24,6 @@ void RGB ()//(u8 *leds)
 	
 		
 }
-=======
-
-void 
->>>>>>> Stashed changes
 //
 int32_t main(void)
 {
@@ -79,35 +74,6 @@ int32_t main(void)
 	{
 		WDTclr;
 //
-<<<<<<< Updated upstream
-=======
-//		if(press) //press KEY
-//		{
-//			press=0;
-//			
-//			
-//			switch(key)
-//			{ 
-////				case 1:write_eep(ADDRESS_PARAM,sizeof(eeprom_temp1),&eeprom_temp1);break;
-////				case 2:read_eep(ADDRESS_PARAM,sizeof(eeprom_temp2),&eeprom_temp2);break;
-////				case 3:{eeprom_temp1++;zb>=1.0?1.0:(zb+=.1);}break;
-////				case 4:clearDisp();break;
-////				case 5:zb<=0.1?0.1:(zb-=0.1);break;
-//				
-//			}
-
-//			//	if(t>=SAMPLE_LENGTH)
-////	{
-////		t=0;
-////		fadc=1;
-////		for(u16 i=0;i<SAMPLE_LENGTH;i++)fft_in[i]=(float)fft_tmp[i];
-////	}
-//			
-//		}
-//
-
-
->>>>>>> Stashed changes
 		if(!tmr)
 		{
 			u8 i,j;
@@ -119,7 +85,6 @@ int32_t main(void)
 			leds[3]=0xFFFFFF;
 			leds[4]=0x010101;
 			
-<<<<<<< Updated upstream
 			RGB();//2,0xFFFFFF);
 //		for(j=0;j<8;j++)
 //		{			
@@ -131,21 +96,6 @@ int32_t main(void)
 		}
 	} //end while
 }		//end main
-=======
-			D0 = !D0;
-			D1 = !D0;
-			D2 = D0;
-			D3 = !D0;
-			D4 = D0;
-			D5 = !D0;
-			D6 = D0;
-//			D7 = !D0;			
-
-			}
-
-	}
-}
->>>>>>> Stashed changes
 //
 void TMR0_IRQHandler(void)//1ms
 {
@@ -156,7 +106,6 @@ void TMR0_IRQHandler(void)//1ms
 //	if(ts_tmr>1)ts_tmr--;
 	
 //	fp();
-	D7 = !D7;
 	
 	tick=1;
 }

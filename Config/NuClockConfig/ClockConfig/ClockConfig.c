@@ -1,11 +1,7 @@
 /****************************************************************************
  * @file     ClockConfig.c
  * @version  V1.06
-<<<<<<< Updated upstream
  * @Date     2022/12/07-21:36:52 
-=======
- * @Date     2022/12/07-21:19:57 
->>>>>>> Stashed changes
  * @brief    NuMicro generated code file
  *
  * SPDX-License-Identifier: Apache-2.0

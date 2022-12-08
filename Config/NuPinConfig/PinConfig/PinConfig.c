@@ -1,11 +1,7 @@
 /****************************************************************************
  * @file     PinConfig.c
  * @version  V1.23
-<<<<<<< Updated upstream
  * @Date     2022/12/07-21:36:45 
-=======
- * @Date     2022/12/07-21:16:33 
->>>>>>> Stashed changes
  * @brief    NuMicro generated code file
  *
  * SPDX-License-Identifier: Apache-2.0
