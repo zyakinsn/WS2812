@@ -21,8 +21,7 @@ void RGB ()//(u8 *leds)
 	{
 		for(i=0;i<24;i++) leds[j]&(0x800000>>i)?hiw():low();//G	
 	}
-	
-		
+	D7=0;
 }
 //
 int32_t main(void)
@@ -74,26 +73,58 @@ int32_t main(void)
 	{
 		WDTclr;
 //
+			
 		if(!tmr)
 		{
-			u8 i,j;
-			tmr=100;				//1ms timer
 
-			leds[0]=0x0000FF;
-			leds[1]=0x0000FF; //GRB
-			leds[2]=0xFF00FF;
-			leds[3]=0xFFFFFF;
-			leds[4]=0x010101;
+			tmr=250;				//1ms timer
+
+//			leds[0]=0x0000FF;
+//			leds[1]=0x0000FF; //GRB
+//			leds[2]=0xFF00FF;
+//			leds[3]=0xFFFFFF;
+//			leds[4]=0x111111;
+
 			
-			RGB();//2,0xFFFFFF);
-//		for(j=0;j<8;j++)
-//		{			
-//			for(i=0;i<8;i++) hiw();//G	
-//			for(i=0;i<8;i++) low();//R
-//			for(i=0;i<8;i++) low();//R			
-//		}	
-//			D7=0;
-		}
+
+		//	u8 i;
+			color=(red<<8)+(green<<16)+blue;
+			leds[blink]=color;
+			
+			
+			color2=((red-128)<<8)+((red-128)<<16)+(red-128);
+			color3=((red-192)<<8)+((red-192)<<16)+(red-192);
+			color4=0x101010;
+			color5=0x010101;
+			color6=0x000000;
+			
+			leds[blink-1]=color2;
+			leds[blink-2]=color3;
+			leds[blink-3]=color4;
+			leds[blink-4]=color5;
+			leds[blink-5]=color6;			
+			
+//			if(blink>=8)
+//			{
+//					for(i=1;i<9;i++)
+//					{
+//					 color=((red-32*i)<<8)+((red-32*i)<<16)+(red-32*i);
+//						if(red-32*i<=0)color=0x000000;
+//					 leds[blink-i]=color;	
+//					}	
+//		  }
+			RGB();//2,0xFFFFFF);	
+			
+	//		leds[blink]=0x000000;
+			
+			
+			(blink>=LEDS-1)?(blink=0):blink++;
+
+			//				if(blink>=LEDS-2) blink=0;
+//					else blink++;
+
+			D0=!D0;
+		}// end timer
 	} //end while
 }		//end main
 //

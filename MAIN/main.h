@@ -16,13 +16,13 @@
 
 #define RAB_CLS						8
 #define RAB_OPN						5
-#define LEDS					16
+#define LEDS							21
 //
 u8 to_sw;
 u16 RAB_busy;
 u16 tmr;
 u8 tick;
-u8 blink;
+u8 blink=0;
 u8 to_send;
 u8 to_save;
 u8 to_boot;
@@ -32,8 +32,8 @@ u8 rel;
 u8 key;
 u8 eeprom_temp1=0;
 u8 eeprom_temp2=0;
-u8 fadc;
-u16 color;
+u32 red=0xFF,green=0xFF,blue=0xFF;
+u32 color, color2, color3, color4, color5, color6;
 
 u32 leds[LEDS];
 
